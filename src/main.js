@@ -10,10 +10,10 @@ function renderList(list){
   let fragment = ''
   if(arr.length){
     fragment = arr.map(i=>{
-      let created = format(i.created, 'y-mn-d')
+      let created = format(i.create_date, 'y-mn-d')
       return `<tr>
         <td>${i.id}</td>
-        <td>${i.open_id}</td>
+        <td>${i.name}</td>
         <td>${created}</td>
       </tr>`
     })
@@ -36,7 +36,9 @@ input.onkeyup = function(e){
   }
 }
 btn.onclick = ()=>{
-  api.serch(input.value)
+  api.serch(input.value).then(res=>{
+    renderList(res)
+  })
 }
 
 

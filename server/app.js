@@ -51,5 +51,5 @@ app.on('error', (err, ctx)=>{
 
 app.use(router.router.routes())
 
-app.listen(3000)
-console.log('app running at port 3000')
+app.listen(3030)
+console.log('app running at port 3030:  localhost:3030')

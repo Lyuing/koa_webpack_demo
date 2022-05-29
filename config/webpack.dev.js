@@ -8,12 +8,13 @@ module.exports = merge(common, {
   devServer: {
     hot: true,
     open: false,
-    host: '10.20.12.138',
-    port: 1234,
+    host: '192.168.0.105',
+    port: 8086,
     proxy: {
       '/api': {
-        target: 'http://10.20.12.138:3000/',
-        pathRewrite: {'^/api': ''}
+        target: 'http://192.168.0.105:3030',
+        changeOrigin: true,
+        pathRewrite: {'/api': ''}
       }
     }
   },

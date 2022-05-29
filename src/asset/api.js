@@ -1,13 +1,13 @@
 import axios from 'axios';
 
+const baseURL = process.env.NODE_ENV === 'production' ? '' : '/api'
+// console.log('process.env.NODE_ENV', process.env.NODE_ENV, baseURL)
+const http = axios.create({
+  baseURL,
+})
 class Api {
-
-  constructor(){
-    this.prePath = process.env.NODE_ENV === 'production' ?　'' : '/api'
-  }
   getHome(){
-    let path = this.prePath + '/home'
-    axios.get(path).then(res=>{
+    http.get('/home').then(res=>{
       console.log(res)
     }).catch(err=>{
       console.log(err)
@@ -15,8 +15,7 @@ class Api {
   }
   
   getDefault(){
-    let path = this.prePath + ''
-    axios.get(path).then(res=>{
+    http.get('').then(res=>{
       console.log(res)
     }).catch(err=>{
       console.log(err)
@@ -24,11 +23,14 @@ class Api {
   }
 
   async serch(name){
-    let path = this.prePath + `/serch`
-    const res = await axios.post(path, { name });
-    console.log(res);
-    let list = res.data.data;
-    return list;
+    try {
+      const res = await http.post(`/serch`, { name });
+      console.log(res);
+      let list = res.data.data;
+      return list; 
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

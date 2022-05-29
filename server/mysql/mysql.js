@@ -3,17 +3,17 @@
 var mysql = require('mysql');
 
 var pool  = mysql.createConnection({
-  host     : 'localhost',
+  host     : '121.**.**.198',
   user     : 'root',
-  password : '123456',
-  database : 'test'
+  password : 'ly****25',
+  database : 'userDB'
 });
 
 
 class Mysql {
     query (param) {
       return new Promise((resolve, reject) => {
-        pool.query('SELECT * from egg_users WHERE id = ' + param, function (error, results, fields) {
+        pool.query(`SELECT * from user WHERE name = "${param}"`, function (error, results, fields) {
             if (error) {
                 throw error
             };
